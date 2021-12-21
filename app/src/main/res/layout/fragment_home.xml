@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Home">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="152dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:text="Instagram"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25mdp"
+
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_image"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background=" #808080"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/_50mdp"
+                android:layout_height="@dimen/_50mdp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="28dp"
+                android:src="@drawable/boy"
+                app:civ_border_color="#FFA500"
+
+                app:civ_border_width="@dimen/_3mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/story"
+                            android:layout_width="@dimen/_130mdp"
+                            android:layout_height="@dimen/_85mdp"
+                            android:layout_marginStart="24dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/boy"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:riv_border_color="#333333"
+                            app:riv_border_width="2dip"
+                            app:riv_corner_radius="10dip"
+                            app:riv_mutate_background="true"
+                            app:riv_tile_mode="repeat" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/teal_700"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                            app:layout_constraintStart_toStartOf="@+id/imageView3"
+                            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="25dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_baseline_add_24"
+                            app:layout_constraintBottom_toBottomOf="@+id/story"
+                            app:layout_constraintEnd_toEndOf="@+id/story"
+                            app:layout_constraintHorizontal_bias="0.492"
+                            app:layout_constraintStart_toStartOf="@+id/story"
+                            app:layout_constraintTop_toTopOf="@+id/story"
+                            app:layout_constraintVertical_bias="0.431" />
+
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:text="Create a Story"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                            app:layout_constraintStart_toStartOf="@+id/imageView3"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/storyrv"
+                        android:layout_width="205dp"
+                        android:layout_height="123dp"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1mdp"
+                android:background="#A9A9A9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/kv"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

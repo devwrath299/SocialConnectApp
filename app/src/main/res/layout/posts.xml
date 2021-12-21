@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/_15mdp"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/_50mdp"
+        android:layout_height="@dimen/_50mdp"
+        android:src="@drawable/boy"
+        app:civ_border_color="#FFA500"
+        app:civ_border_width="@dimen/_3mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="Devwrath vats"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16mdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="4dp"
+        android:text="Devwrath vats"
+        android:textSize="@dimen/_10mdp"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/threedots" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/story"
+        android:layout_width="406dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/boy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:riv_border_color="#333333"
+        app:riv_border_width="2dip"
+        app:riv_corner_radius="10dip"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="repeat" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="11dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/story"
+        app:srcCompat="@drawable/save" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:layout_width="@dimen/_15mdp"
+            android:id="@+id/heart"
+
+            android:layout_height="@dimen/_15mdp"
+            android:src="@drawable/heart">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+            android:id="@+id/liketext"
+
+            android:text="455" />
+        <ImageView
+            android:layout_marginLeft="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:layout_width="@dimen/_15mdp"
+            android:id="@+id/chats"
+
+            android:layout_height="@dimen/_15mdp"
+            android:src="@drawable/chat">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+            android:id="@+id/chattext"
+
+            android:text="455" />
+        <ImageView
+            android:layout_marginLeft="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:layout_width="@dimen/_15mdp"
+            android:id="@+id/share"
+
+            android:layout_height="@dimen/_15mdp"
+            android:src="@drawable/rightarrow">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+            android:id="@+id/sharetext"
+
+            android:text="455" />
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
