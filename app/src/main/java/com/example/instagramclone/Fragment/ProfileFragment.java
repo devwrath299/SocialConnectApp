@@ -2,13 +2,26 @@ package com.example.instagramclone.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.instagramclone.Adapter.friendsadapter;
+import com.example.instagramclone.Adapter.storyadapter;
+import com.example.instagramclone.MainActivity;
+import com.example.instagramclone.Models.Friends;
+import com.example.instagramclone.Models.storyModal;
 import com.example.instagramclone.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +70,44 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    RecyclerView rv;
+    ArrayList<Friends> list;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view= inflater.inflate(R.layout.fragment_profile, container, false);
+        Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
+        ((MainActivity)getActivity()).setSupportActionBar(toolbar);
+
+        setHasOptionsMenu(true);
+
+        rv=view.findViewById(R.id.rvs);
+        list=new ArrayList<>();
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        list.add(new Friends(R.drawable.secondboy));
+        friendsadapter adapter=new friendsadapter(list,getContext());
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        rv.setLayoutManager(linearLayoutManager);
+        rv.setNestedScrollingEnabled(false);
+        rv.setAdapter(adapter);
+
+        return view;
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menuitem,menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
