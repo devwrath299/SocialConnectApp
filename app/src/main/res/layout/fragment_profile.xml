@@ -12,8 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-61dp">
+        diagonal:layout_constraintEnd_toEndOf="parent"
+        diagonal:layout_constraintStart_toStartOf="parent"
+        diagonal:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,24 +51,35 @@
                         android:src="@drawable/boy"
                         android:textAlignment="textStart" />
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/change"
+                        android:layout_width="35dp"
+                        android:layout_height="36dp"
+
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="65dp"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/imagefetch"
+                        android:translationX="@dimen/_20font_mdp"
+                        android:translationY="@dimen/_100mdp"
+                        diagonal:layout_constraintEnd_toStartOf="@+id/profile"
+                        diagonal:layout_constraintStart_toEndOf="@+id/profile"
+                        diagonal:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/toolbar_bg"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                        diagonal:title="My Profile" />
+
                 </com.github.florent37.diagonallayout.DiagonalLayout>
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toolbar_bg"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                diagonal:layout_constraintBottom_toTopOf="@+id/profile_image"
-                diagonal:layout_constraintEnd_toEndOf="parent"
-                diagonal:layout_constraintHorizontal_bias="0.5"
-                diagonal:layout_constraintStart_toStartOf="parent"
-                diagonal:layout_constraintTop_toTopOf="parent"
-                diagonal:layout_constraintVertical_bias="0.0"
-                diagonal:title="My Profile" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
