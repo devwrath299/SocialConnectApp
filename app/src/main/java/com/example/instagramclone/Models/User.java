@@ -2,7 +2,18 @@ package com.example.instagramclone.Models;
 
 public class User {
     String email,password,name,profession;
-    String cover_photo,Profile;
+    String cover_photo,Profile,ID;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+
+
 
     public String getProfile() {
         return Profile;

@@ -24,11 +24,12 @@
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_request.xml" value="0.14270833333333333" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="app/src/main/res/layout/friend.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/noti3.xml" value="0.2" />
         <entry key="app/src/main/res/layout/posts.xml" value="0.4" />
         <entry key="app/src/main/res/layout/storyrv.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/usersearch.xml" value="0.264" />
         <entry key="app/src/main/res/menu/menuitem.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/xml/tab.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/xml/tabs.xml" value="0.16041666666666668" />

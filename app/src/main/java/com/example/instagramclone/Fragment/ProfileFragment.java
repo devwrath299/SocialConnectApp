@@ -181,10 +181,7 @@ public class ProfileFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-        else
-        {
-            Toast.makeText(getContext(), "No Image Selected", Toast.LENGTH_SHORT).show();
-        }
+
 
          if(data!=null && data.getData()!=null && requestCode==11)
         {
@@ -209,10 +206,7 @@ public class ProfileFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-            else
-            {
-                Toast.makeText(getContext(), "No Image Selected", Toast.LENGTH_SHORT).show();
-            }
+
 
     }
 
