@@ -111,15 +111,17 @@
 
             <TextView
                 android:id="@+id/namess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_width="181dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="65dp"
+
                 android:gravity="center"
                 android:text="Devwrath Vats"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20mdp"
                 android:textStyle="bold"
+
                 diagonal:layout_constraintEnd_toEndOf="@+id/profile_image"
                 diagonal:layout_constraintHorizontal_bias="0.209"
                 diagonal:layout_constraintStart_toStartOf="@+id/profile_image"
@@ -129,11 +131,12 @@
                 android:id="@+id/aboutss"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:text="Android Developer"
                 android:textSize="@dimen/_14mdp"
                 diagonal:layout_constraintEnd_toEndOf="@+id/namess"
-                diagonal:layout_constraintHorizontal_bias="0.391"
+                diagonal:layout_constraintHorizontal_bias="0.406"
                 diagonal:layout_constraintStart_toStartOf="@+id/namess"
                 diagonal:layout_constraintTop_toBottomOf="@+id/namess" />
 
@@ -242,7 +245,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_7mdp"
-                            android:text="344"
+                            android:gravity="center"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -272,7 +276,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_7mdp"
-                            android:text="342"
+                            android:text="0"
+                            android:gravity="center"
                             android:textColor="@color/black"
 
                             android:textSize="20sp" />
@@ -301,7 +306,8 @@
                             android:layout_width="48dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_7mdp"
-                            android:text="44"
+                            android:gravity="center"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
                     </LinearLayout>
@@ -329,7 +335,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="My Friends"
+                android:text="My Followers"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"

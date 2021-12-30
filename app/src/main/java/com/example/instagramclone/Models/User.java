@@ -3,6 +3,17 @@ package com.example.instagramclone.Models;
 public class User {
     String email,password,name,profession;
     String cover_photo,Profile,ID;
+    int followerCnt;
+
+    public int getFollowerCnt() {
+        return followerCnt;
+    }
+
+    public void setFollowerCnt(int followerCnt) {
+        this.followerCnt = followerCnt;
+    }
+
+
 
     public String getID() {
         return ID;

@@ -3,7 +3,6 @@ package com.example.instagramclone.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -11,12 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagramclone.Adapter.ViewPagerAdapter;
-import com.example.instagramclone.Models.Friends;
-import com.example.instagramclone.Models.notifiaction;
 import com.example.instagramclone.R;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.

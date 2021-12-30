@@ -87,14 +87,16 @@ public class SearchFragment extends Fragment {
         binding.userrvs.setLayoutManager(lm);
         binding.userrvs.setAdapter(adapter);
 
+
         database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                 list.clear();
                 for(DataSnapshot ds:snapshot.getChildren())
                 {
                     User user=ds.getValue(User.class);
                     user.setID(ds.getKey());
+                    if(!FirebaseAuth.getInstance().getUid().equals(user.getID()))
                     list.add(user);
 
                 }
@@ -107,7 +109,6 @@ public class SearchFragment extends Fragment {
 
             }
         });
-
 
         return binding.getRoot();
     }

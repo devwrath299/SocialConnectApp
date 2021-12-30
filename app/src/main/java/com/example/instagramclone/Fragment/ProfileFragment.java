@@ -14,23 +14,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.instagramclone.Adapter.friendsadapter;
-import com.example.instagramclone.Adapter.storyadapter;
+import com.example.instagramclone.Adapter.followersadapter;
+import com.example.instagramclone.Login;
 import com.example.instagramclone.MainActivity;
-import com.example.instagramclone.Models.Friends;
+import com.example.instagramclone.Models.Follow;
 import com.example.instagramclone.Models.User;
-import com.example.instagramclone.Models.storyModal;
 import com.example.instagramclone.R;
 import com.example.instagramclone.databinding.FragmentProfileBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -88,7 +87,7 @@ public class ProfileFragment extends Fragment {
     }
 
     RecyclerView rv;
-    ArrayList<Friends> list;
+    ArrayList<Follow> list;
     FragmentProfileBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -109,22 +108,39 @@ public class ProfileFragment extends Fragment {
         database=FirebaseDatabase.getInstance();
         storage=FirebaseStorage.getInstance();
 
+
+
+
         rv=binding.rvs;
         list=new ArrayList<>();
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        list.add(new Friends(R.drawable.secondboy));
-        friendsadapter adapter=new friendsadapter(list,getContext());
+
+
+        followersadapter adapter=new followersadapter(list,getContext());
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         rv.setLayoutManager(linearLayoutManager);
         rv.setNestedScrollingEnabled(false);
+
+
+        database.getReference().child("Users").child(auth.getUid())
+                .child("Followers").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds:snapshot.getChildren())
+                {
+                    Follow follow=ds.getValue(Follow.class);
+                    list.add(follow);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         rv.setAdapter(adapter);
+
+
 
         //background Profile image update code
 
@@ -229,10 +245,9 @@ public class ProfileFragment extends Fragment {
                                     .placeholder(R.drawable.place)
                                     .into(binding.profileImage);
 
-
-
                             binding.namess.setText(user.getName());
                             binding.aboutss.setText(user.getProfession());
+
                         }
                     }
 
@@ -241,11 +256,35 @@ public class ProfileFragment extends Fragment {
 
                     }
                 });
-    }
+        database.getReference().child("Users").child(auth.getUid())
+                .child("Followers").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                binding.textView6.setText(snapshot.getChildrenCount()+"");
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menuitem,menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.setting:
+                auth.signOut();
+                startActivity(new Intent(getContext(), Login.class));
+                break;
+                
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

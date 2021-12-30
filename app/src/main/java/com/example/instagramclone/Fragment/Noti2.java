@@ -11,10 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagramclone.Adapter.noificationadapter;
-import com.example.instagramclone.Adapter.storyadapter;
-import com.example.instagramclone.Models.Friends;
 import com.example.instagramclone.Models.notifiaction;
-import com.example.instagramclone.Models.storyModal;
 import com.example.instagramclone.R;
 
 import java.util.ArrayList;
