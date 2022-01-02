@@ -6,12 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instagramclone.Models.User;
 import com.example.instagramclone.Models.postmodel;
 import com.example.instagramclone.R;
+import com.example.instagramclone.databinding.PostsBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,18 +45,110 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         postmodel model=list.get(position);
-        holder.story.setImageResource(model.getStory());
-        holder.profileimage.setImageResource(model.getProfileimage());
-        holder.like.setImageResource(model.getLike());
-        holder.save.setImageResource(model.getSave());
-        holder.share.setImageResource(model.getShare());
-        holder.chat.setImageResource(model.getChat());
-        holder.threedots.setImageResource(model.getThreedots());
-        holder.name.setText(model.getName());
-        holder.about.setText(model.getAbout());
-        holder.sharetext.setText(model.getSharetext());
-        holder.liketext.setText(model.getLiketext());
-        holder.chattext.setText(model.getChattext());
+        Picasso.get()
+                .load(model.getPostedimage())
+                .placeholder(R.drawable.place)
+                .into(holder.binding.story);
+        String desc=model.getPostdescription();
+        if(desc.isEmpty())
+        {
+            holder.binding.desc.setVisibility(View.GONE);
+        }else
+        {
+            holder.binding.desc.setText(desc);
+        }
+        FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(model.getPostedby())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists())
+                        {
+                            User user=snapshot.getValue(User.class);
+                            Picasso.get()
+                                    .load(user.getProfile())
+                                    .placeholder(R.drawable.place)
+                                    .into(holder.binding.profileImage);
+                            holder.binding.textView4.setText(user.getName());
+                            holder.binding.textView5.setText(user.getProfession());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Posts")
+                .child(model.getPostid())
+                .child("likes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.binding.liketext.setText(snapshot.getChildrenCount()+"");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        FirebaseDatabase.getInstance().getReference().child("Posts")
+                .child(model.getPostid())
+                .child("likes")
+                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                   holder.binding.heart.setImageResource(R.drawable.redheart);
+                   holder.binding.heart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Posts")
+                                    .child(model.getPostid())
+                                    .child("likes")
+                                    .child(FirebaseAuth.getInstance().getUid())
+                                    .setValue(null);
+                            holder.binding.heart.setImageResource(R.drawable.heart);
+                        }
+                    });
+                }
+                else
+                {
+                    holder.binding.heart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Posts")
+                                    .child(model.getPostid())
+                                    .child("likes")
+                                    .child(FirebaseAuth.getInstance().getUid())
+                                    .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    holder.binding.heart.setImageResource(R.drawable.redheart);
+                                    Toast.makeText(context, "You liked this Post", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -56,26 +158,10 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        ImageView story,profileimage,like,save,share,chat,threedots;
-        TextView name,about,liketext,sharetext,chattext;
+       PostsBinding binding;
         public viewholder(@NonNull View itemView) {
             super(itemView);
-
-            story=itemView.findViewById(R.id.story);
-            profileimage=itemView.findViewById(R.id.profile_image);
-            like=itemView.findViewById(R.id.heart);
-            share=itemView.findViewById(R.id.share);
-            chat=itemView.findViewById(R.id.chats);
-            save=itemView.findViewById(R.id.imageView7);
-            threedots=itemView.findViewById(R.id.imageView2);
-            name=itemView.findViewById(R.id.textView4);
-            about=itemView.findViewById(R.id.textView5);
-            liketext=itemView.findViewById(R.id.liketext);
-            sharetext=itemView.findViewById(R.id.sharetext);
-            chattext=itemView.findViewById(R.id.chattext);
-
-
-
+            binding=PostsBinding.bind(itemView);
         }
     }
 }

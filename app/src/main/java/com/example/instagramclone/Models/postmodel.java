@@ -2,117 +2,58 @@ package com.example.instagramclone.Models;
 
 public class postmodel {
 
-    int story,profileimage,like,save,share,chat,threedots;
-    String name,about,liketext,sharetext,chattext;
+    String Postid,postedby,postedimage,postdescription;
+    long postedat;
 
-    public postmodel(int story, int profileimage, int like, int save, int share, int chat, int threedots, String name, String about, String liketext, String sharetext, String chattext) {
-        this.story = story;
-        this.profileimage = profileimage;
-        this.like = like;
-        this.save = save;
-        this.share = share;
-        this.chat = chat;
-        this.threedots = threedots;
-        this.name = name;
-        this.about = about;
-        this.liketext = liketext;
-        this.sharetext = sharetext;
-        this.chattext = chattext;
+    public postmodel() {
+
     }
 
-    public int getStory() {
-        return story;
+    public postmodel(String postid, String postedby, String postedimage, String postdescription, long postedat) {
+        Postid = postid;
+        this.postedby = postedby;
+        this.postedimage = postedimage;
+        this.postdescription = postdescription;
+        this.postedat = postedat;
     }
 
-    public void setStory(int story) {
-        this.story = story;
+    public String getPostid() {
+        return Postid;
     }
 
-    public int getProfileimage() {
-        return profileimage;
+    public void setPostid(String postid) {
+        Postid = postid;
     }
 
-    public void setProfileimage(int profileimage) {
-        this.profileimage = profileimage;
+    public String getPostedby() {
+        return postedby;
     }
 
-    public int getLike() {
-        return like;
+    public void setPostedby(String postedby) {
+        this.postedby = postedby;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public String getPostedimage() {
+        return postedimage;
     }
 
-    public int getSave() {
-        return save;
+    public void setPostedimage(String postedimage) {
+        this.postedimage = postedimage;
     }
 
-    public void setSave(int save) {
-        this.save = save;
+    public String getPostdescription() {
+        return postdescription;
     }
 
-    public int getShare() {
-        return share;
+    public void setPostdescription(String postdescription) {
+        this.postdescription = postdescription;
     }
 
-    public void setShare(int share) {
-        this.share = share;
+    public long getPostedat() {
+        return postedat;
     }
 
-    public int getChat() {
-        return chat;
-    }
-
-    public void setChat(int chat) {
-        this.chat = chat;
-    }
-
-    public int getThreedots() {
-        return threedots;
-    }
-
-    public void setThreedots(int threedots) {
-        this.threedots = threedots;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
-    public String getLiketext() {
-        return liketext;
-    }
-
-    public void setLiketext(String liketext) {
-        this.liketext = liketext;
-    }
-
-    public String getSharetext() {
-        return sharetext;
-    }
-
-    public void setSharetext(String sharetext) {
-        this.sharetext = sharetext;
-    }
-
-    public String getChattext() {
-        return chattext;
-    }
-
-    public void setChattext(String chattext) {
-        this.chattext = chattext;
+    public void setPostedat(long postedat) {
+        this.postedat = postedat;
     }
 }

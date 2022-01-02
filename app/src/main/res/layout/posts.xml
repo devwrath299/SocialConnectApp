@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginBottom="@dimen/_15mdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_15mdp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -82,71 +82,95 @@
         app:layout_constraintTop_toTopOf="@+id/story"
         app:srcCompat="@drawable/save" />
 
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/story">
+        app:layout_constraintTop_toBottomOf="@+id/desc">
 
         <ImageView
-            android:layout_marginLeft="@dimen/_16mdp"
-            android:layout_marginTop="@dimen/_4mdp"
-            android:layout_width="@dimen/_15mdp"
             android:id="@+id/heart"
-
+            android:layout_width="@dimen/_15mdp"
             android:layout_height="@dimen/_15mdp"
+            android:layout_marginTop="@dimen/_4mdp"
             android:src="@drawable/heart">
 
         </ImageView>
+
         <TextView
+            android:id="@+id/liketext"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_15mdp"
             android:layout_marginLeft="@dimen/_4mdp"
             android:gravity="top"
-            android:id="@+id/liketext"
 
             android:text="455" />
+
         <ImageView
+            android:id="@+id/chats"
+            android:layout_width="@dimen/_15mdp"
+            android:layout_height="@dimen/_15mdp"
             android:layout_marginLeft="@dimen/_16mdp"
             android:layout_marginTop="@dimen/_4mdp"
-            android:layout_width="@dimen/_15mdp"
-            android:id="@+id/chats"
-
-            android:layout_height="@dimen/_15mdp"
             android:src="@drawable/chat">
 
         </ImageView>
 
         <TextView
+            android:id="@+id/chattext"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_15mdp"
             android:layout_marginLeft="@dimen/_4mdp"
             android:gravity="top"
-            android:id="@+id/chattext"
 
             android:text="455" />
+
         <ImageView
+            android:id="@+id/share"
+            android:layout_width="@dimen/_15mdp"
+            android:layout_height="@dimen/_15mdp"
             android:layout_marginLeft="@dimen/_16mdp"
             android:layout_marginTop="@dimen/_4mdp"
-            android:layout_width="@dimen/_15mdp"
-            android:id="@+id/share"
-
-            android:layout_height="@dimen/_15mdp"
             android:src="@drawable/rightarrow">
 
         </ImageView>
 
         <TextView
+            android:id="@+id/sharetext"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_15mdp"
             android:layout_marginLeft="@dimen/_4mdp"
             android:gravity="top"
-            android:id="@+id/sharetext"
 
             android:text="455" />
-
 
 
     </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.instagramclone.Fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,12 @@ import com.example.instagramclone.Adapter.storyadapter;
 import com.example.instagramclone.Models.postmodel;
 import com.example.instagramclone.Models.storyModal;
 import com.example.instagramclone.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -44,14 +51,16 @@ public class Home extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    FirebaseDatabase database;
+    FirebaseAuth auth;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        database=FirebaseDatabase.getInstance();
+        auth=FirebaseAuth.getInstance();
+
     }
     RecyclerView rv,kv;
     ArrayList<storyModal>list;
@@ -73,12 +82,6 @@ public class Home extends Fragment {
         list.add(new storyModal(R.drawable.boy,R.drawable.live2,R.drawable.boy,"Devwrath Vats"));
         list.add(new storyModal(R.drawable.boy,R.drawable.live2,R.drawable.boy,"Devwrath Vats"));
 
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
-        klist.add(new postmodel(R.drawable.boy,R.drawable.boy,R.drawable.heart,R.drawable.save,R.drawable.rightarrow,R.drawable.chat,R.drawable.threedots,"Devwrath Vats","Android Developer","455","455","455"));
 
         storyadapter  adapter=new storyadapter(list,getContext());
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -90,6 +93,31 @@ public class Home extends Fragment {
         LinearLayoutManager lm=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         kv.setLayoutManager(lm);
         kv.setNestedScrollingEnabled(false);
+
+        database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                klist.clear();
+                for(DataSnapshot ds:snapshot.getChildren())
+                {
+                    postmodel post=ds.getValue(postmodel.class);
+                    post.setPostid(ds.getKey());
+                    klist.add(post);
+
+                }
+                pstadapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
         kv.setAdapter(pstadapter);
 
         return view;
