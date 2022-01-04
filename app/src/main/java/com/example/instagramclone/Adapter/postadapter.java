@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramclone.Models.User;
+import com.example.instagramclone.Models.notifiaction;
 import com.example.instagramclone.Models.postmodel;
 import com.example.instagramclone.R;
 import com.example.instagramclone.comment;
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
 
@@ -136,6 +138,21 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
                                 public void onSuccess(Void unused) {
                                     holder.binding.heart.setImageResource(R.drawable.redheart);
                                     Toast.makeText(context, "You liked this Post", Toast.LENGTH_SHORT).show();
+
+                                    notifiaction nf=new notifiaction();
+                                    nf.setNotifiactionby(FirebaseAuth.getInstance().getUid());
+                                    nf.setNotificationat(new Date().getTime());
+                                    nf.setPostid(model.getPostid());
+                                    nf.setPostedby(model.getPostedby());
+                                    nf.setType("like");
+
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("Notification")
+                                            .child(model.getPostedby())
+                                            .push()
+                                            .setValue(nf);
+
+
                                 }
                             });
                         }

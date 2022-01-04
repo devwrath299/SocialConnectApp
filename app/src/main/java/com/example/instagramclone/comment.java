@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.instagramclone.Adapter.commentadapter;
 import com.example.instagramclone.Models.Commentmodel;
 import com.example.instagramclone.Models.User;
+import com.example.instagramclone.Models.notifiaction;
 import com.example.instagramclone.Models.postmodel;
 import com.example.instagramclone.databinding.ActivityCommentBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -118,6 +119,20 @@ public class comment extends AppCompatActivity {
                             public void onSuccess(Void unused) {
                                 binding.editTextTextPersonName3.setText("");
                                 Toast.makeText(getApplicationContext(), "Commented", Toast.LENGTH_SHORT).show();
+
+                                notifiaction nf=new notifiaction();
+                                nf.setNotifiactionby(auth.getUid());
+                                nf.setNotificationat(new Date().getTime());
+                                nf.setPostid(postid);
+                                nf.setPostedby(postedby);
+                                nf.setType("comment");
+
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("Notification")
+                                        .child(postedby)
+                                        .push()
+                                        .setValue(nf);
+
                             }
                         });
             }

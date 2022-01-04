@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.instagramclone.Fragment.AddFragment;
 import com.example.instagramclone.Fragment.Home;
+import com.example.instagramclone.Fragment.Noti2;
 import com.example.instagramclone.Fragment.Notification;
 import com.example.instagramclone.Fragment.ProfileFragment;
 import com.example.instagramclone.Fragment.SearchFragment;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         transaction.replace(R.id.container,new Home());
                         break;
                     case 1:
-                        transaction.replace(R.id.container,new Notification());
+                        transaction.replace(R.id.container,new Noti2());
                         break;
                     case 2:
                         transaction.replace(R.id.container,new AddFragment());

@@ -1,36 +1,74 @@
 package com.example.instagramclone.Models;
 
 public class notifiaction {
-    int profile;
-    String post,time;
+     String notifiactionby,type,postid,postedby,checkopen,notifiactionid;
+     long notificationat;
 
-    public notifiaction(int profile, String post, String time) {
-        this.profile = profile;
-        this.post = post;
-        this.time = time;
+    public notifiaction(String notifiactionby, String type, String postid, String postedby, String checkopen, long notificationat) {
+        this.notifiactionby = notifiactionby;
+        this.type = type;
+        this.postid = postid;
+        this.postedby = postedby;
+        this.checkopen = checkopen;
+        this.notificationat = notificationat;
     }
 
-    public int getProfile() {
-        return profile;
+    public String getNotifiactionid() {
+        return notifiactionid;
     }
 
-    public void setProfile(int profile) {
-        this.profile = profile;
+    public void setNotifiactionid(String notifiactionid) {
+        this.notifiactionid = notifiactionid;
     }
 
-    public String getPost() {
-        return post;
+    public notifiaction() {
     }
 
-    public void setPost(String post) {
-        this.post = post;
+    public String getNotifiactionby() {
+        return notifiactionby;
     }
 
-    public String getTime() {
-        return time;
+    public void setNotifiactionby(String notifiactionby) {
+        this.notifiactionby = notifiactionby;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPostid() {
+        return postid;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
+
+    public String getPostedby() {
+        return postedby;
+    }
+
+    public void setPostedby(String postedby) {
+        this.postedby = postedby;
+    }
+
+    public String getCheckopen() {
+        return checkopen;
+    }
+
+    public void setCheckopen(String checkopen) {
+        this.checkopen = checkopen;
+    }
+
+    public long getNotificationat() {
+        return notificationat;
+    }
+
+    public void setNotificationat(long notificationat) {
+        this.notificationat = notificationat;
     }
 }

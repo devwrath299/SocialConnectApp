@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.instagramclone.Fragment.Notification;
 import com.example.instagramclone.Fragment.SearchFragment;
 import com.example.instagramclone.Models.Follow;
 import com.example.instagramclone.Models.User;
+import com.example.instagramclone.Models.notifiaction;
 import com.example.instagramclone.R;
 import com.example.instagramclone.databinding.UsersearchBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -100,6 +102,17 @@ public class searchoption extends RecyclerView.Adapter<searchoption.viewholder>{
 
 
                                                     Toast.makeText(context, "You Followed "+ user.getName(), Toast.LENGTH_SHORT).show();
+                                                    notifiaction nf=new notifiaction();
+                                                    nf.setNotifiactionby(FirebaseAuth.getInstance().getUid());
+                                                    nf.setNotificationat(new Date().getTime());
+                                                    nf.setType("follow");
+
+                                                    FirebaseDatabase.getInstance().getReference()
+                                                            .child("Notification")
+                                                            .child(user.getID())
+                                                            .push()
+                                                            .setValue(nf);
+
 
                                                 }
                                             });
