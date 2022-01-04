@@ -79,13 +79,14 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         binding= FragmentSearchBinding.inflate(inflater, container, false);
         auth=FirebaseAuth.getInstance();
+        binding.userrvs.showShimmerAdapter();
         database=FirebaseDatabase.getInstance();
         list=new ArrayList<>();
 
         searchoption adapter=new searchoption(list,getContext());
         LinearLayoutManager lm=new LinearLayoutManager(getContext());
         binding.userrvs.setLayoutManager(lm);
-        binding.userrvs.setAdapter(adapter);
+
 
 
         database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
@@ -100,6 +101,8 @@ public class SearchFragment extends Fragment {
                     list.add(user);
 
                 }
+                binding.userrvs.setAdapter(adapter);
+                binding.userrvs.hideShimmerAdapter();
                 adapter.notifyDataSetChanged();
 
             }

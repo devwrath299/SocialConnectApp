@@ -6,10 +6,12 @@
     android:layout_height="wrap_content"
     tools:context=".Fragment.SearchFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/userrvs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:shimmer_demo_child_count="10"
+        app:shimmer_demo_layout="@layout/searchshimmer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

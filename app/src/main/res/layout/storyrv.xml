@@ -10,14 +10,13 @@
         android:id="@+id/story"
         android:layout_width="@dimen/_130mdp"
         android:layout_height="@dimen/_85mdp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@drawable/boy"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="10dip"
         app:riv_mutate_background="true"
-        app:riv_tile_mode="repeat" />
+         />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -27,10 +26,22 @@
         android:layout_marginTop="4dp"
         android:padding="4dp"
         android:src="@drawable/boy"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="@dimen/_2mdp"
         app:layout_constraintStart_toStartOf="@+id/story"
         app:layout_constraintTop_toTopOf="@+id/story" />
+
+    <com.devlomi.circularstatusview.CircularStatusView
+        android:id="@+id/circular_status_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image"
+        app:layout_constraintStart_toStartOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image"
+        app:portion_color="@color/white"
+        app:portion_spacing="6dp"
+        app:portion_width="4dp"
+        app:portions_count="3" />
 
     <ImageView
         android:id="@+id/status"

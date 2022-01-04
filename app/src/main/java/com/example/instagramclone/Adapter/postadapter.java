@@ -1,6 +1,7 @@
 package com.example.instagramclone.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.instagramclone.Models.User;
 import com.example.instagramclone.Models.postmodel;
 import com.example.instagramclone.R;
+import com.example.instagramclone.comment;
 import com.example.instagramclone.databinding.PostsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -143,6 +145,31 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        FirebaseDatabase.getInstance().getReference().child("Posts")
+                .child(model.getPostid()).child("comments")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       holder.binding.chattext.setText(snapshot.getChildrenCount()+"");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        holder.binding.chats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, comment.class);
+                intent.putExtra("postid",model.getPostid());
+                intent.putExtra("postedby",model.getPostedby());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
 
             }
         });

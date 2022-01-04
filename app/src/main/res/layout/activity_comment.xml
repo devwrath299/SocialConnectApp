@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".comment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/teal_700"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="406dp"
+        android:layout_height="201dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/secondboy" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="71dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/boy"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/follow_button"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15mdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+        app:layout_constraintStart_toEndOf="@+id/circleImageView"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:singleLine="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc">
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="@dimen/_15mdp"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:src="@drawable/heart">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/liketext"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+
+            android:text="455" />
+
+        <ImageView
+            android:id="@+id/chats"
+            android:layout_width="@dimen/_15mdp"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:src="@drawable/chat">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/chattext"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+
+            android:text="455" />
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="@dimen/_15mdp"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_16mdp"
+            android:layout_marginTop="@dimen/_4mdp"
+            android:src="@drawable/rightarrow">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/sharetext"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_15mdp"
+            android:layout_marginLeft="@dimen/_4mdp"
+            android:gravity="top"
+
+            android:text="455" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="325dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:paddingRight="@dimen/_45mdp"
+        android:layout_marginBottom="16dp"
+
+
+        android:background="@drawable/follow_button"
+        android:ems="10"
+        android:inputType="textMultiLine|textPersonName"
+        android:maxLines="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="51dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName3"
+        app:srcCompat="@drawable/send" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

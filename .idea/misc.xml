@@ -19,9 +19,11 @@
         <entry key="app/src/main/res/drawable/secondfollow.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/activity_add_post.xml" value="0.176" />
+        <entry key="app/src/main/res/layout/activity_comment.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.152" />
+        <entry key="app/src/main/res/layout/comment_sample.xml" value="0.264" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12686567164179105" />
         <entry key="app/src/main/res/layout/fragment_noti2.xml" value="0.16041666666666668" />
@@ -31,8 +33,11 @@
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="app/src/main/res/layout/friend.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/noti3.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/posts.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/posts.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/searchshimmer.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/shimmerpost.xml" value="0.16018518518518518" />
         <entry key="app/src/main/res/layout/storyrv.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/storyshimmer.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/usersearch.xml" value="0.264" />
         <entry key="app/src/main/res/menu/menuitem.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/xml/tab.xml" value="0.11822916666666666" />

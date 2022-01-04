@@ -1,51 +1,44 @@
 package com.example.instagramclone.Models;
 
+import java.util.ArrayList;
+
 public class storyModal{
+    String storyby;
+    long storyat;
+    ArrayList<userstories>userstories;
 
-    int story,status,profile;
-    String name;
-
-    public storyModal(int story, int status, int profile, String name) {
-        this.story = story;
-        this.status = status;
-        this.profile = profile;
-        this.name = name;
+    public storyModal(String storyby, long storyat, ArrayList<com.example.instagramclone.Models.userstories> userstories) {
+        this.storyby = storyby;
+        this.storyat = storyat;
+        this.userstories = userstories;
     }
 
-    public int getStory() {
-        return story;
+    public storyModal() {
     }
 
-    public void setStory(int story) {
-        this.story = story;
+    public String getStoryby() {
+        return storyby;
     }
 
-    public int getStatus() {
-        return status;
+    public void setStoryby(String storyby) {
+        this.storyby = storyby;
     }
 
-    public void setStatus(int storyype) {
-        this.status = storyype;
+    public long getStoryat() {
+        return storyat;
     }
 
-    public int getProfile() {
-        return profile;
+    public void setStoryat(long storyat) {
+        this.storyat = storyat;
     }
 
-    public void setProfile(int profile) {
-        this.profile = profile;
+    public ArrayList<com.example.instagramclone.Models.userstories> getUserstories() {
+        return userstories;
     }
 
-    public String getName() {
-        return name;
+    public void setUserstories(ArrayList<com.example.instagramclone.Models.userstories> userstories) {
+        this.userstories = userstories;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
 }
 
 

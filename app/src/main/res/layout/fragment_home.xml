@@ -133,10 +133,12 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/storyrv"
                         android:layout_width="205dp"
                         android:layout_height="123dp"
+                        app:shimmer_demo_child_count="10"
+                        app:shimmer_demo_layout="@layout/storyshimmer"
                         android:layout_marginLeft="15dp" />
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
@@ -150,13 +152,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/kv"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
+                app:shimmer_demo_child_count="10"
+                app:shimmer_demo_layout="@layout/shimmerpost"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />

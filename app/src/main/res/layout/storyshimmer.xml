@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="@dimen/_20mdp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/story"
+            android:layout_width="@dimen/_130mdp"
+            android:layout_height="@dimen/_85mdp"
+            android:background="@drawable/follow_button"
+            android:backgroundTint="#D3D3D3"
+            android:scaleType="fitXY"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="10dip"
+            app:riv_mutate_background="true" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

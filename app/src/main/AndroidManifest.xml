@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InstagramClone">
         <activity
+            android:name=".comment"
+            android:exported="true" />
+        <activity
             android:name=".signup"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Login"
             android:exported="true">
