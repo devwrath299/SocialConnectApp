@@ -48,150 +48,145 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        postmodel model=list.get(position);
-        Picasso.get()
-                .load(model.getPostedimage())
-                .placeholder(R.drawable.place)
-                .into(holder.binding.story);
-        String desc=model.getPostdescription();
-        if(desc.isEmpty())
-        {
-            holder.binding.desc.setVisibility(View.GONE);
-        }else
-        {
-            holder.binding.desc.setText(desc);
-        }
-        FirebaseDatabase.getInstance().getReference().child("Users")
-                .child(model.getPostedby())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists())
-                        {
-                            User user=snapshot.getValue(User.class);
-                            Picasso.get()
-                                    .load(user.getProfile())
-                                    .placeholder(R.drawable.place)
-                                    .into(holder.binding.profileImage);
-                            holder.binding.textView4.setText(user.getName());
-                            holder.binding.textView5.setText(user.getProfession());
-                        }
-                    }
+       postmodel model=list.get(position);
+       if(model!=null && model.getPostedby()!=null) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+           Picasso.get()
+                   .load(model.getPostedimage())
+                   .placeholder(R.drawable.place)
+                   .into(holder.binding.story);
+           String desc = model.getPostdescription();
+           if (desc!=null && desc.isEmpty()) {
+               holder.binding.desc.setVisibility(View.GONE);
+           } else {
+               holder.binding.desc.setText(desc);
+           }
+           FirebaseDatabase.getInstance().getReference().child("Users")
+                   .child(model.getPostedby())
+                   .addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           if (snapshot.exists()) {
+                               User user = snapshot.getValue(User.class);
+                               Picasso.get()
+                                       .load(user.getProfile())
+                                       .placeholder(R.drawable.place)
+                                       .into(holder.binding.profileImage);
+                               holder.binding.textView4.setText(user.getName());
+                               holder.binding.textView5.setText(user.getProfession());
+                           }
+                       }
 
-                    }
-                });
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
 
-        FirebaseDatabase.getInstance().getReference()
-                .child("Posts")
-                .child(model.getPostid())
-                .child("likes").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.binding.liketext.setText(snapshot.getChildrenCount()+"");
-            }
+                       }
+                   });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+           FirebaseDatabase.getInstance().getReference()
+                   .child("Posts")
+                   .child(model.getPostid())
+                   .child("likes").addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   holder.binding.liketext.setText(snapshot.getChildrenCount() + "");
+               }
 
-            }
-        });
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
 
+               }
+           });
 
 
-        FirebaseDatabase.getInstance().getReference().child("Posts")
-                .child(model.getPostid())
-                .child("likes")
-                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
-                   holder.binding.heart.setImageResource(R.drawable.redheart);
-                   holder.binding.heart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            FirebaseDatabase.getInstance().getReference()
-                                    .child("Posts")
-                                    .child(model.getPostid())
-                                    .child("likes")
-                                    .child(FirebaseAuth.getInstance().getUid())
-                                    .setValue(null);
-                            holder.binding.heart.setImageResource(R.drawable.heart);
-                        }
-                    });
-                }
-                else
-                {
-                    holder.binding.heart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            FirebaseDatabase.getInstance().getReference()
-                                    .child("Posts")
-                                    .child(model.getPostid())
-                                    .child("likes")
-                                    .child(FirebaseAuth.getInstance().getUid())
-                                    .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    holder.binding.heart.setImageResource(R.drawable.redheart);
-                                    Toast.makeText(context, "You liked this Post", Toast.LENGTH_SHORT).show();
+           FirebaseDatabase.getInstance().getReference().child("Posts")
+                   .child(model.getPostid())
+                   .child("likes")
+                   .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if (snapshot.exists()) {
+                       holder.binding.heart.setImageResource(R.drawable.redheart);
+                       holder.binding.heart.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               FirebaseDatabase.getInstance().getReference()
+                                       .child("Posts")
+                                       .child(model.getPostid())
+                                       .child("likes")
+                                       .child(FirebaseAuth.getInstance().getUid())
+                                       .setValue(null);
+                               holder.binding.heart.setImageResource(R.drawable.heart);
+                           }
+                       });
+                   } else {
+                       holder.binding.heart.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               FirebaseDatabase.getInstance().getReference()
+                                       .child("Posts")
+                                       .child(model.getPostid())
+                                       .child("likes")
+                                       .child(FirebaseAuth.getInstance().getUid())
+                                       .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                   @Override
+                                   public void onSuccess(Void unused) {
+                                       holder.binding.heart.setImageResource(R.drawable.redheart);
+                                       Toast.makeText(context, "You liked this Post", Toast.LENGTH_SHORT).show();
 
-                                    notifiaction nf=new notifiaction();
-                                    nf.setNotifiactionby(FirebaseAuth.getInstance().getUid());
-                                    nf.setNotificationat(new Date().getTime());
-                                    nf.setPostid(model.getPostid());
-                                    nf.setPostedby(model.getPostedby());
-                                    nf.setType("like");
+                                       notifiaction nf = new notifiaction();
+                                       nf.setNotifiactionby(FirebaseAuth.getInstance().getUid());
+                                       nf.setNotificationat(new Date().getTime());
+                                       nf.setPostid(model.getPostid());
+                                       nf.setPostedby(model.getPostedby());
+                                       nf.setType("like");
 
-                                    FirebaseDatabase.getInstance().getReference()
-                                            .child("Notification")
-                                            .child(model.getPostedby())
-                                            .push()
-                                            .setValue(nf);
+                                       FirebaseDatabase.getInstance().getReference()
+                                               .child("Notification")
+                                               .child(model.getPostedby())
+                                               .push()
+                                               .setValue(nf);
 
 
-                                }
-                            });
-                        }
-                    });
-                }
-            }
+                                   }
+                               });
+                           }
+                       });
+                   }
+               }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-        FirebaseDatabase.getInstance().getReference().child("Posts")
-                .child(model.getPostid()).child("comments")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       holder.binding.chattext.setText(snapshot.getChildrenCount()+"");
-                    }
+               }
+           });
+           FirebaseDatabase.getInstance().getReference().child("Posts")
+                   .child(model.getPostid()).child("comments")
+                   .addListenerForSingleValueEvent(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           holder.binding.chattext.setText(snapshot.getChildrenCount() + "");
+                       }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                       }
+                   });
 
-        holder.binding.chats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(context, comment.class);
-                intent.putExtra("postid",model.getPostid());
-                intent.putExtra("postedby",model.getPostedby());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+           holder.binding.chats.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(context, comment.class);
+                   intent.putExtra("postid", model.getPostid());
+                   intent.putExtra("postedby", model.getPostedby());
+                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   context.startActivity(intent);
 
-            }
-        });
+               }
+           });
 
-
+       }
 
     }
 
@@ -202,7 +197,7 @@ public class postadapter extends RecyclerView.Adapter<postadapter.viewholder> {
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-       PostsBinding binding;
+        PostsBinding binding;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             binding=PostsBinding.bind(itemView);

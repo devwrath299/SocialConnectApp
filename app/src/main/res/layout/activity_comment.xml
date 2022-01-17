@@ -65,6 +65,7 @@
         android:background="@color/white"
         android:ems="10"
         android:hint="Description"
+        android:textColorHint="@color/black"
         android:inputType="textMultiLine"
         android:maxLines="2"
         android:singleLine="false"
@@ -130,24 +131,6 @@
 
             android:text="455" />
 
-        <ImageView
-            android:id="@+id/share"
-            android:layout_width="@dimen/_15mdp"
-            android:layout_height="@dimen/_15mdp"
-            android:layout_marginLeft="@dimen/_16mdp"
-            android:layout_marginTop="@dimen/_4mdp"
-            android:src="@drawable/rightarrow">
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/sharetext"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_15mdp"
-            android:layout_marginLeft="@dimen/_4mdp"
-            android:gravity="top"
-
-            android:text="455" />
 
 
     </LinearLayout>

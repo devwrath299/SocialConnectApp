@@ -61,7 +61,7 @@ public class noificationadapter extends RecyclerView.Adapter<noificationadapter.
 
                         if(type.equals("like"))
                         {
-                           holder.binding.textView15.setText(Html.fromHtml( "<b>"+ user.getName()+"</b>"+" Liked Your Post"));
+                            holder.binding.textView15.setText(Html.fromHtml( "<b>"+ user.getName()+"</b>"+" Liked Your Post"));
                         }
                         else if(type.equals("follow"))
                         {
@@ -86,11 +86,11 @@ public class noificationadapter extends RecyclerView.Adapter<noificationadapter.
             public void onClick(View view) {
 
                 if(!type.equals("follow")){
-                Intent intent =new Intent(context, comment.class);
-                intent.putExtra("postid",nf.getPostid());
-                intent.putExtra("postedby",nf.getPostedby());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);}
+                    Intent intent =new Intent(context, comment.class);
+                    intent.putExtra("postid",nf.getPostid());
+                    intent.putExtra("postedby",nf.getPostedby());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);}
             }
         });
 

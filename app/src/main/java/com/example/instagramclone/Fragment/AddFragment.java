@@ -113,6 +113,9 @@ public class AddFragment extends Fragment {
         binding.appCompatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(!binding.editTextTextPersonName.getText().toString().isEmpty())
+                {
                 dialog.show();
                 StorageReference reference=storage.getReference().child("posts")
                         .child(auth.getUid())
@@ -145,6 +148,12 @@ public class AddFragment extends Fragment {
                 });
 
             }}
+            else
+                {
+                    Toast.makeText(getContext(), "Write Some Words About Post In Description", Toast.LENGTH_SHORT).show();
+                }
+            }
+
         });
 
 
@@ -177,7 +186,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data!=null && data.getData()!=null)
+        if(data!=null && data.getData()!=null )
         {
           uri=data.getData();
           binding.imageView9.setVisibility(View.VISIBLE);

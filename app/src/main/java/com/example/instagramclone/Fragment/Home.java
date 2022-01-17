@@ -106,7 +106,7 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
 
-               launcher.launch("image/*");
+                launcher.launch("image/*");
 
             }
         });
@@ -115,49 +115,49 @@ public class Home extends Fragment {
             @Override
             public void onActivityResult(Uri result) {
 
-               if(result!=null){
-                   dialog.show();
+                if(result!=null){
+                    dialog.show();
 
-                StorageReference reference=FirebaseStorage.getInstance().getReference()
-                        .child("stories")
-                        .child(auth.getUid())
-                        .child(new Date().getTime()+"");
+                    StorageReference reference=FirebaseStorage.getInstance().getReference()
+                            .child("stories")
+                            .child(auth.getUid())
+                            .child(new Date().getTime()+"");
 
                     reference.putFile(result).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                storyModal modal=new storyModal();
-                                modal.setStoryat(new Date().getTime());
-                                database.getReference()
-                                        .child("stories")
-                                        .child(auth.getUid())
-                                        .child("postedAt")
-                                        .setValue(modal.getStoryat()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        userstories storries=new userstories(uri.toString(),modal.getStoryat());
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    storyModal modal=new storyModal();
+                                    modal.setStoryat(new Date().getTime());
+                                    database.getReference()
+                                            .child("stories")
+                                            .child(auth.getUid())
+                                            .child("postedAt")
+                                            .setValue(modal.getStoryat()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            userstories storries=new userstories(uri.toString(),modal.getStoryat());
 
-                                        database.getReference()
-                                                .child("stories")
-                                                .child(auth.getUid())
-                                                .child("userStories")
-                                                .push()
-                                                .setValue(storries);
-                                        dialog.dismiss();
-                                        Toast.makeText(getContext(), "Story Sucessfully Uploaded", Toast.LENGTH_SHORT).show();
+                                            database.getReference()
+                                                    .child("stories")
+                                                    .child(auth.getUid())
+                                                    .child("userStories")
+                                                    .push()
+                                                    .setValue(storries);
+                                            dialog.dismiss();
+                                            Toast.makeText(getContext(), "Story Sucessfully Uploaded", Toast.LENGTH_SHORT).show();
 
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
 
 
-            }}
+                }}
         });
 
 
@@ -185,8 +185,8 @@ public class Home extends Fragment {
 
                                 for (DataSnapshot d:ds.child("userStories").getChildren())
                                 {
-                                     userstories uv=d.getValue(userstories.class);
-                                     us.add(uv);
+                                    userstories uv=d.getValue(userstories.class);
+                                    us.add(uv);
                                 }
                                 story.setUserstories(us);
                                 list.add(story);

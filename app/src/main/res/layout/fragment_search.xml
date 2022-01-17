@@ -6,16 +6,39 @@
     android:layout_height="wrap_content"
     tools:context=".Fragment.SearchFragment">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchview"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:defaultQueryHint="Search ..."
+            app:iconifiedByDefault="false" />
+    </androidx.cardview.widget.CardView>
+
     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/userrvs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:shimmer_demo_child_count="10"
-        app:shimmer_demo_layout="@layout/searchshimmer"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.007"
+        app:shimmer_demo_child_count="10"
+        app:shimmer_demo_layout="@layout/searchshimmer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

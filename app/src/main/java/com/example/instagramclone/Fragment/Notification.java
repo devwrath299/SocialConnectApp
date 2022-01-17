@@ -49,13 +49,13 @@ public class Notification extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-      View view= inflater.inflate(R.layout.fragment_notification, container, false);
-      viewPager=view.findViewById(R.id.viewpager);
-      viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager()));
+        View view= inflater.inflate(R.layout.fragment_notification, container, false);
+        viewPager=view.findViewById(R.id.viewpager);
+        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager()));
 
-      tabLayout=view.findViewById(R.id.tabLayout);
-      tabLayout.setupWithViewPager(viewPager);
+        tabLayout=view.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
 
-      return view;
+        return view;
     }
 }

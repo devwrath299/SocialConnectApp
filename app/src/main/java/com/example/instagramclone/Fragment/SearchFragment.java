@@ -3,8 +3,10 @@ package com.example.instagramclone.Fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +16,13 @@ import com.example.instagramclone.Adapter.searchoption;
 import com.example.instagramclone.Models.User;
 import com.example.instagramclone.R;
 import com.example.instagramclone.databinding.FragmentSearchBinding;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -72,6 +77,8 @@ public class SearchFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase database;
     ArrayList<User>list;
+    searchoption adapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +90,7 @@ public class SearchFragment extends Fragment {
         database=FirebaseDatabase.getInstance();
         list=new ArrayList<>();
 
-        searchoption adapter=new searchoption(list,getContext());
+        adapter=new searchoption(list,getContext());
         LinearLayoutManager lm=new LinearLayoutManager(getContext());
         binding.userrvs.setLayoutManager(lm);
 
@@ -113,6 +120,39 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        binding.searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                process(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                process(newText);
+                return true;
+            }
+        });
+
         return binding.getRoot();
+    }
+
+    void process(String query) {
+
+        ArrayList<User> nlist= new ArrayList<User>();
+        for(User usr:list)
+        {
+            if(usr.getName().toLowerCase().contains(query.toLowerCase()))
+            {
+                nlist.add(usr);
+            }
+
+        }
+        adapter=new searchoption(nlist,getContext());
+        LinearLayoutManager lm=new LinearLayoutManager(getContext());
+        binding.userrvs.setLayoutManager(lm);
+        binding.userrvs.setAdapter(adapter);
+
+
     }
 }

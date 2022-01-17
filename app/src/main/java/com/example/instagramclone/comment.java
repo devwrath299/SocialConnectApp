@@ -61,12 +61,13 @@ public class comment extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         postmodel post=snapshot.getValue(postmodel.class);
+                        if(post!=null && post.getPostedimage()!=null){
                         Picasso.get()
                                 .load(post.getPostedimage())
                                 .placeholder(R.drawable.place)
                                 .into(binding.imageView11);
 
-                        binding.desc.setText(post.getPostdescription());
+                        binding.desc.setText(post.getPostdescription());}
 
 
                     }
@@ -157,7 +158,7 @@ public class comment extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                      binding.liketext.setText(snapshot.getChildrenCount()+"");
+                        binding.liketext.setText(snapshot.getChildrenCount()+"");
                     }
 
                     @Override
