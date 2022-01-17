@@ -1,5 +1,5 @@
 
-# Instagram Clone
+# Social Connect App
 
 It is similar to Instagram and nearly has all features same as Instagram
 
