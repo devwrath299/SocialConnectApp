@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "602459106352",
+    "project_id": "socialconnect-255a7",
+    "storage_bucket": "socialconnect-255a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602459106352:android:4f7c9965f530b87c3611f5",
+        "android_client_info": {
+          "package_name": "com.example.instagramclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602459106352-k0rjnbu836u2o0s9ho54dqmi5bdblkpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTDHWiy1SidOMzoF5NJiFnCVqfqvWJLS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602459106352-k0rjnbu836u2o0s9ho54dqmi5bdblkpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

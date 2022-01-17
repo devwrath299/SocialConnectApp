@@ -1,5 +1,6 @@
 package com.example.instagramclone.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -92,6 +93,7 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
+    ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,6 +109,12 @@ public class ProfileFragment extends Fragment {
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         storage=FirebaseStorage.getInstance();
+        dialog=new ProgressDialog(getContext());
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Image Uploading");
+        dialog.setMessage("Please wait...");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
 
 
@@ -150,6 +158,7 @@ public class ProfileFragment extends Fragment {
                 Intent intent=new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
+
                 startActivityForResult(intent,22);
             }
         });
@@ -161,6 +170,7 @@ public class ProfileFragment extends Fragment {
                 Intent intent=new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
+
                 startActivityForResult(intent,11);
             }
         });
@@ -174,9 +184,9 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        dialog.show();
         super.onActivityResult(requestCode, resultCode, data);
         if( data!=null && data.getData()!=null && requestCode==22) {
-
             try {
                 Uri uri = data.getData();
                 binding.profile.setImageURI(uri);
@@ -184,11 +194,13 @@ public class ProfileFragment extends Fragment {
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getContext(), "Image Uploaded Sucessfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Image Uploaded Sucessfully", Toast.LENGTH_SHORT).show();
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 database.getReference().child("Users").child(auth.getUid()).child("cover_photo").setValue(uri.toString());
+                                dialog.cancel();
+                                Toast.makeText(getContext(), "Image Sucessfully Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -209,11 +221,13 @@ public class ProfileFragment extends Fragment {
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getContext(), "Image Uploaded Sucessfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Image Uploaded Sucessfully", Toast.LENGTH_SHORT).show();
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 database.getReference().child("Users").child(auth.getUid()).child("Profile").setValue(uri.toString());
+                                dialog.cancel();
+                                Toast.makeText(getContext(), "Image Sucessfully Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -221,9 +235,10 @@ public class ProfileFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
-
+        dialog.cancel();
     }
 
     @Override
