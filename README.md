@@ -1,6 +1,6 @@
 
 # Social Connect App
- It is application which has features many social networking app at one platform.
+ It is application which has features of many social networking applications at one platform.
 
 # Features 
  - create stories and view others stories
