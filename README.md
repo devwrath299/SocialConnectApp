@@ -14,5 +14,4 @@
  - can do a meeting with your friends
  
 
-## Demo
 
